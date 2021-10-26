@@ -1,47 +1,68 @@
-# Project 2
-#### By: Nathan Noack
+# Project 2 Documentation
+## By: Nathan Noack
 
-## Project Summary
-[what are you building]
-[what tools are you using]
-
-
-
+## Introduction
+This is a full-stack (MELN) app implementing Model-View-Controller design with RESTful routing.\
+\
+[See working site here!](https://nn-penguin-project2.herokuapp.com/)
 
 
-## List of Technologies
+## Technologies Used
+#### Basic
+ - HTML5
+ - CSS3
+ - JavaScript ES6
 
-
-
-
-
-
-
-
-## Models
-[list here any models in your app and their properties]
-
-
-
-
-
-
-
-## Route Table
-[List your routes in a table]
-
-
-
-
-
-
-
+#### Libraries / Techniques
+ - MongoDB as a database
+ - ExpressJS Routing
+ - Liquid Templating for generating dynamic HTML templates
+ - NodeJS as a backend server
+ - Bulma CSS framework (mobile-first, flexible, and lightweight!)
+ - Deployed with Heroku
 
 
 ## User Stories
+  - This workout app allows a user to create workouts based on their personal preference
+  - It starts with a Day, which has one of three types of exercises (A, B, or C)
+  - Then, a user can choose from a list of pre-filled exercises to perform (or create a new exercise), and when choosing, the exercises show a form for entering in their performed weight, number of sets, and number of reps (the numbers for weight/sets/reps are also suggested in the exercise submission form)
+   - A user must be able to easily navigate the tree of Days/Workouts/Exercises from any given location in the app
 
 
+## Models
+ - Day:
+    - day number ("Day 1", "Day 2", ad infinitum)
+    - workout type ("Workout A", "Workout B", or "Workout C")
+ - Exercise (a child of the current Day's "workout type"):
+    - name of exercise
+    - weight number
+    - sets number
+    - reps number
 
+#### Example
+```
+App
+ ├── Day 1
+ │     └── Push Day
+ │             └── Bench press
+ │                      ├── 135 lbs
+ │                      ├── 3 sets
+ │                      └── 10 reps
+ ├── Day 2
+ └── Day 3
+```
+
+
+## RESTful Route Table
+| Action  | Path      | HTTP Verb | Liquid view filename | Purpose                                                 |
+|:-------:|:---------:|:---------:|:--------------------:|:-------------------------------------------------------:|
+| Index   | /         | GET       | index.liquid         | List all Days                                           |
+| Show    | /:id      | GET       | show.liquid          | Show info about one Day                                 |
+| New     | /new      | GET       | new.liquid           | Show a form to complete for creating a new Day          |
+| Create  | /         | POST      |                      | Create a new Day, then redirect to root path            |
+| Edit    | /:id/edit | GET       | edit.liquid          | Show a form to complete for editing an existing Day     |
+| Update  | /:id      | PUT       |                      | Update the edited Day from the "Edit route"             |
+| Destroy | /:id      | DELETE    |                      | Delete a specific Day                                   |
 
 
 
