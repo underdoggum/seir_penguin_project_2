@@ -44,11 +44,21 @@ This is a full-stack (MELN) app implementing Model-View-Controller design with R
 App
  ├── Day 1
  │     └── Push Day
- │             └── Bench press
- │                      ├── 135 lbs
- │                      ├── 3 sets
- │                      └── 10 reps
+ │             ├── Bench press
+ │             │        ├── 135 lbs
+ │             │        ├── 3 sets
+ │             │        └── 10 reps
+ │             └── Lateral raises
+ │                      ├── 10 lbs
+ │                      ├── 4 sets
+ │                      └── 12 reps
  ├── Day 2
+ │     └── Pull Day
+ │             └── Pull-ups
+ │                      ├── bodyweight
+ │                      ├── 2 sets
+ │                      └── 8 reps
+ │
  └── Day 3
 ```
 
