@@ -2,22 +2,18 @@
 {% block content %}
 
 <div class="container box">
+  <a class="button m-2 is-link" href="/days/new">New Day</a>
   {% for day in days %}
   <article>
-
-
-
+    
     {% if day.workoutType == "Rest" %}
       <a class="button title is-5 m-2 is-warning is-light" href="/days/{{ day._id }}">Day {{ day.name }} - {{ day.workoutType }}</a>
     {% else %}
       <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">Day {{ day.name }} - Workout {{ day.workoutType }}</a>
     {% endif %}
 
-
-    
   </article>
   {% endfor %}
-  <a class="button m-2 is-link" href="/days/new">New Day</a>
 </div>
 
 {% endblock %}

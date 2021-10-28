@@ -1,14 +1,14 @@
 {% layout "layout.liquid" %}
 {% block content %}
 
+<nav class="breadcrumb container" aria-label="breadcrumbs">
+  <ul>
+    <!-- maybe add font-awesome icons here -->
+    <li ><a href="/days">Days</a></li>
+  </ul>
+</nav>
 <div class="container box">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <!-- maybe add font-awesome icons here -->
-      <li><a href="/days">Days</a></li>
-    </ul>
-  </nav>
-  <hr>
+  <!-- <hr> -->
   <!-- <a href="/days" class="button is-link mb-4">Back</a> -->
   <article>
     <form action="/days/{{ day._id }}?_method=DELETE" method="post">
@@ -18,9 +18,24 @@
     <h1 class="title is-4">
       Day: {{ day.name }}
     </h1>
-    <h1 class="title is-4">
+    <h1 class="title is-4 has-text-centered">
       Workout Type: {{ day.workoutType }}
     </h1>
+    <table class="table container">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Weight</th>
+          <th>Sets</th>
+          <th>Reps</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <!-- <tr> need a for loop here for list of exercises
+
+        </tr> -->
+      </tfoot>
+    </table>
   </article>
 </div>
 

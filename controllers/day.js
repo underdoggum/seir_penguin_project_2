@@ -17,8 +17,14 @@ const router = express.Router();
 
 // index route
 router.get("/", async (req, res) => {
-  const days = await Day.find({});
-  res.render("days/index.liquid", { days });
+  Day.find({})
+    .sort({ name: -1 })    // used to sort by increasing days
+    .then(days => {
+      res.render("days/index.liquid", { days });
+    })
+    .catch(error => {
+      res.json(error);
+    });
 });
 
 // new route

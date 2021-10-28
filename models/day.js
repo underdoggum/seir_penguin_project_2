@@ -10,7 +10,7 @@ const { Schema, model } = mongoose;
 
 const daysSchema = new Schema({
   name: {
-    type: String,
+    type: Number,
     required: true
   },
   workoutType: {
