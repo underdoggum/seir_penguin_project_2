@@ -14,12 +14,92 @@ const router = express.Router();
 /////////////////////////////////////////
 // Days routes
 /////////////////////////////////////////
-// // removed the below route because we're seeding via "npm run seed" which pulls from /models/seed.js
-// router.get("/seed", (req, res) => {
-//   // array of starter days seed
-// });
 
 // index route
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const days = await Day.find({});
+  res.render("days/index.liquid", { days });
+});
+
+// new route
+router.get("/new", (req, res) => {
+  let newDay = 0;
   Day.find({})
-})
+    .then(days => {
+      newDay = days.length + 1;
+      res.render("days/new.liquid", { newDay });
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// create route
+router.post("/", (req, res) => {
+  Day.create(req.body)
+    .then(day => {
+      res.redirect("/days");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// edit route
+router.get("/:id/edit", (req, res) => {
+  const id = req.params.id;
+  let newDay = 0;
+  Day.find({})
+    .then(days => {
+      newDay = days.length + 1;
+    })
+    .catch(error => {
+      res.json(error);
+    });
+  Day.findById(id)
+    .then(day => {
+      res.render("days/edit.liquid", { day, newDay })
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// update route
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  Day.findByIdAndUpdate(id, req.body, { new: true })
+    .then(fruit => {
+      res.redirect(`/days/${id}`);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// destroy route
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  Day.findByIdAndRemove(id)
+    .then(day => {
+      res.redirect("/days");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// show route
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  Day.findById(id)
+    .then(day => {
+      res.render("days/show.liquid", { day });
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+
+module.exports = router;

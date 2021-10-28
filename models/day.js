@@ -1,7 +1,7 @@
 /////////////////////////////////////////
 // Setup
 /////////////////////////////////////////
-const mongoose = require("mongoose");
+const mongoose = require("./connection");
 
 /////////////////////////////////////////
 // Create Day model
@@ -13,7 +13,7 @@ const daysSchema = new Schema({
     type: String,
     required: true
   },
-  exerciseType: {
+  workoutType: {
     type: String,
     required: true
   }

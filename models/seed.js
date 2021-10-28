@@ -24,6 +24,14 @@ db.on("open", () => {
         .then(data => {
           console.log(data);
           db.close();
+        })
+        .catch(error => {
+          console.log(error);
+          db.close();
         });
+    })
+    .catch(error => {
+      console.log(error);
+      db.close();
     });
 });
