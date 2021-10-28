@@ -4,7 +4,8 @@
 <nav class="breadcrumb container" aria-label="breadcrumbs">
   <ul>
     <!-- maybe add font-awesome icons here -->
-    <li ><a href="/days">Days</a></li>
+    <li><a href="/days">Days</a></li>
+    <li><a href="/days/{{ day._id }}">Workout</a></li>
   </ul>
 </nav>
 <div class="container box">
@@ -21,21 +22,94 @@
     <h1 class="title is-4 has-text-centered">
       Workout Type: {{ day.workoutType }}
     </h1>
-    <table class="table container">
-      <thead>
-        <tr>
-          <th>Exercise</th>
-          <th>Weight</th>
-          <th>Sets</th>
-          <th>Reps</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <!-- <tr> need a for loop here for list of exercises
+    {% if day.workoutType == "Rest" %}
+      <p class="has-text-centered">Rest Day. Take a load off!</p>
+    {% else %}
+      <table class="table container">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Weight</th>
+            <th>Sets</th>
+            <th>Reps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Workout A -->
+          {% if day.workoutType == "A" %}
+            <tr>
+              <th>Deadlifts</th>
+              <th>95 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Seated Cable Rows</th>
+              <th>65 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Face Pulls</th>
+              <th>65 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>etc etc</th>
+            </tr>
+          
+          <!-- Workout B -->
+          {% elsif day.workoutType == "B" %}
+            <tr>
+              <th>Bench Press</th>
+              <th>135 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Overhead Press</th>
+              <th>45 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Incline Press</th>
+              <th>65 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>etc etc</th>
+            </tr>
 
-        </tr> -->
-      </tfoot>
-    </table>
+          <!-- Workout C -->
+          {% elsif day.workoutType == "C" %}
+            <tr>
+              <th>Squat</th>
+              <th>95 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Romanian Deadlift</th>
+              <th>65 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>Leg Press</th>
+              <th>135 lbs</th>
+              <th>3</th>
+              <th>10</th>
+            </tr>
+            <tr>
+              <th>etc etc</th>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
   </article>
 </div>
 

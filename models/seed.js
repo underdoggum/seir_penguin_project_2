@@ -13,10 +13,10 @@ const db = mongoose.connection;
 db.on("open", () => {
   // reset days
   const startDays = [
-    { name: 1, workoutType: "A (pull)" },
+    { name: 1, workoutType: "A" },
     { name: 2, workoutType: "Rest" },
-    { name: 3, workoutType: "B (push)" },
-    { name: 4, workoutType: "C (legs)" },
+    { name: 3, workoutType: "B" },
+    { name: 4, workoutType: "C" },
     { name: 5, workoutType: "Rest" },
   ];
   Day.deleteMany({})

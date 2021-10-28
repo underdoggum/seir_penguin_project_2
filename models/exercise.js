@@ -27,6 +27,10 @@ const exercisesSchema = new Schema({
     type: Number,
     required: true,
     min: 0
+  },
+  belongsToWorkoutType: {
+    type: String,
+    required: true
   }
 });
 

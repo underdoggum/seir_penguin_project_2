@@ -1,14 +1,14 @@
 {% layout "layout.liquid" %}
 {% block content %}
 
+<nav class="breadcrumb container" aria-label="breadcrumbs">
+  <ul>
+    <!-- maybe add font-awesome icons here -->
+    <li><a href="/days">Days</a></li>
+    <li><a href="/days/new">New Day</a></li>
+  </ul>
+</nav>
 <div class="container box">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <!-- maybe add font-awesome icons here -->
-      <li><a href="/days">Days</a></li>
-    </ul>
-  </nav>
-  <hr>
   <form action="/days" method="post">
     <fieldset>
       <legend>Keep up your progress</legend>
