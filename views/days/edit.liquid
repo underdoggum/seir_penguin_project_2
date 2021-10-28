@@ -1,0 +1,29 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<div class="container box">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <!-- maybe add font-awesome icons here -->
+      <li><a href="/days">Days</a></li>
+    </ul>
+  </nav>
+  <hr>
+  <form action="/days/{{ day._id }}?_method=PUT" method="post">
+    <fieldset>
+      <legend class="title is-4">Let's change Day {{ day.name }}</legend>
+      <!-- <label>
+        Day # <input type="text" name="name" value="{{ newDay }}" />
+      </label> -->
+      <br>
+      
+      <label>
+        Workout type <input type="text" name="workoutType" placeholder="{{ day.workoutType }}" />
+      </label>
+      
+    </fieldset>
+    <input class="button is-primary mt-4" type="submit" value="Change Day {{ day.name }}">
+  </form>
+</div>
+
+{% endblock %}

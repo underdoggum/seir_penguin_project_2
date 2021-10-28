@@ -1,0 +1,46 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<div class="container box">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <!-- maybe add font-awesome icons here -->
+      <li><a href="/days">Days</a></li>
+    </ul>
+  </nav>
+  <hr>
+  <form action="/days" method="post">
+    <fieldset>
+      <legend>Keep up your progress</legend>
+      <label>
+        Day # <input type="text" name="name" value="{{ newDay }}" />
+      </label>
+      <br>
+      {% assign mod = newDay | modulo: 5 %}
+      {% if mod == 0 %}
+        <label>
+          Workout type <input type="text" name="workoutType" value="Rest" />
+        </label>
+      {% elsif mod == 1 %}
+        <label>
+          Workout type <input type="text" name="workoutType" value="A" /> - Pull
+        </label>
+      {% elsif mod == 2 %}
+        <label>
+          Workout type <input type="text" name="workoutType" value="Rest" />
+        </label>
+      {% elsif mod == 3 %}
+        <label>
+          Workout type <input type="text" name="workoutType" value="B" /> - Push
+        </label>
+      {% elsif mod == 4 %}
+        <label>
+          Workout type <input type="text" name="workoutType" value="C" /> - Legs
+        </label>
+      {% endif %}
+    </fieldset>
+    <input class="button is-primary mt-4" type="submit" value="Let's begin">
+  </form>
+</div>
+
+{% endblock %}

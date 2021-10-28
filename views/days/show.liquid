@@ -1,0 +1,27 @@
+{% layout "layout.liquid" %}
+{% block content %}
+
+<div class="container box">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <!-- maybe add font-awesome icons here -->
+      <li><a href="/days">Days</a></li>
+    </ul>
+  </nav>
+  <hr>
+  <!-- <a href="/days" class="button is-link mb-4">Back</a> -->
+  <article>
+    <form action="/days/{{ day._id }}?_method=DELETE" method="post">
+      <input type="submit" class="button is-danger is-pulled-right ml-3" value="DELETE">
+    </form>
+    <a href="/days/{{ day._id }}/edit" class="button is-warning is-pulled-right">Edit</a>
+    <h1 class="title is-4">
+      Day: {{ day.name }}
+    </h1>
+    <h1 class="title is-4">
+      Workout Type: {{ day.workoutType }}
+    </h1>
+  </article>
+</div>
+
+{% endblock %}
