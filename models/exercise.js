@@ -16,7 +16,7 @@ const exercisesSchema = new Schema({
   weight: {
     type: Number,
     required: true,
-    min: 1
+    min: 0
   },
   sets: {
     type: Number,
@@ -28,9 +28,9 @@ const exercisesSchema = new Schema({
     required: true,
     min: 0
   },
-  belongsToWorkoutType: {
-    type: String,
-    required: true
+  day: {
+    type: mongoose.Types.ObjectId,
+    ref: "Day"
   }
 });
 

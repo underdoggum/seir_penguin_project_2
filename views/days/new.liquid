@@ -8,15 +8,70 @@
     <li><a href="/days/new">New Day</a></li>
   </ul>
 </nav>
-<div class="container box">
+<div class="container box has-text-centered">
   <form action="/days" method="post">
     <fieldset>
-      <legend>Keep up your progress</legend>
+      <legend class="title is-3">Keep up your progress</legend>
       <label>
         Day # <input type="text" name="name" value="{{ newDay }}" />
       </label>
       <br>
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% assign mod = newDay | modulo: 5 %}
+          {% if mod == 0 or mod == 2 %}
+            checked value="Rest"
+          {% endif %}
+          > Rest&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if mod == 1 %}
+            checked value="Pull"
+          {% endif %}
+          > Pull&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if mod == 3 %}
+            checked value="Push"
+          {% endif %}
+          > Push&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if mod == 4 %}
+            checked value="Legs"
+          {% endif %}
+          > Legs
+        </label>
+      </div>
+      {% comment %}
       {% assign mod = newDay | modulo: 5 %}
+
+        
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if mod == 0 %}
+            checked>Rest
+          {% elsif mod == 1 %}
+            checked>A
+          {% elsif mod == 2 %}
+            checked>Rest
+          {% elsif mod == 3 %}
+            checked>B
+          {% elsif mod == 4 %}
+            checked>C
+          {% endif %}
+        </label>
+      </div> -->
+
+
+
+
+      <!-- {% assign mod = newDay | modulo: 5 %}
       {% if mod == 0 %}
         <label>
           Workout type <input type="text" name="workoutType" value="Rest" />
@@ -38,6 +93,7 @@
           Workout type <input type="text" name="workoutType" value="C" /> - Legs
         </label>
       {% endif %}
+      {% endcomment %}
     </fieldset>
     <input class="button is-primary mt-4" type="submit" value="Let's begin">
   </form>

@@ -1,8 +1,13 @@
+// Logic for connecting mongo documents thanks to Alex Merced
+// https://www.youtube.com/watch?v=cu6VQgT3EEI
+
 /////////////////////////////////////////
 // Setup
 /////////////////////////////////////////
 const express = require("express");
 const Day = require("../models/day");
+const Exercise = require("../models/exercise");
+const starterExercises = require("../models/starterExercises");
 
 
 /////////////////////////////////////////
@@ -14,11 +19,10 @@ const router = express.Router();
 /////////////////////////////////////////
 // Days routes
 /////////////////////////////////////////
-
-// index route
+// index route (days/new)
 router.get("/", async (req, res) => {
   Day.find({})
-    .sort({ name: -1 })    // used to sort by increasing days
+    .sort({ name: -1 })    // used to sort by decreasing days
     .then(days => {
       res.render("days/index.liquid", { days });
     })
@@ -27,9 +31,9 @@ router.get("/", async (req, res) => {
     });
 });
 
-// new route
+// new route (days/new)
 router.get("/new", (req, res) => {
-  let newDay = 0;
+  let newDay = 0;         // for suggesting new days and workoutTypes
   Day.find({})
     .then(days => {
       newDay = days.length + 1;
@@ -40,20 +44,58 @@ router.get("/new", (req, res) => {
     });
 });
 
-// create route
+// create route (days/new)
 router.post("/", (req, res) => {
   Day.create(req.body)
     .then(day => {
-      res.redirect("/days");
+      // create an array of exercises based on the day's workout type that's selected
+      const exercises = starterExercises[day.workoutType].map(e => {
+        return { ...e, day: day._id };
+      });
+      // create the exercises in MongoDB
+      Exercise.create(exercises)
+        .then(theExercises => {
+          theExercises.forEach(e => {
+            day.exercises.push(e);
+          });
+          day.save()
+            .then(e => {
+              res.redirect(`/days/${day._id}`);
+            })
+            .catch(error => {
+              res.json(error);
+            });
+        })
+        .catch(error => {
+          res.json(error);
+        });
     })
     .catch(error => {
       res.json(error);
     });
 });
 
-// edit route
-router.get("/:id/edit", (req, res) => {
-  const id = req.params.id;
+////////
+// edit route for exercises (days/dayId/workout_edit)
+////////
+router.get("/:dayId/edit_exercises", (req, res) => {
+  const { dayId } = req.params;
+
+  Day.findById(dayId)
+    .populate("exercises")
+    .then(day => {
+      res.render("exercises/edit.liquid", { day });
+    })
+    .catch(error => {
+      res.json(error);
+    });
+});
+
+// edit route (days/dayId/edit)
+router.get("/:dayId/edit", (req, res) => {
+  const { dayId } = req.params;
+
+  // for suggesting new days
   let newDay = 0;
   Day.find({})
     .then(days => {
@@ -62,31 +104,32 @@ router.get("/:id/edit", (req, res) => {
     .catch(error => {
       res.json(error);
     });
-  Day.findById(id)
+    
+  Day.findById(dayId)
     .then(day => {
-      res.render("days/edit.liquid", { day, newDay })
+      res.render("days/edit.liquid", { day, newDay });
     })
     .catch(error => {
       res.json(error);
     });
 });
 
-// update route
-router.put("/:id", (req, res) => {
-  const id = req.params.id;
-  Day.findByIdAndUpdate(id, req.body, { new: true })
-    .then(fruit => {
-      res.redirect(`/days/${id}`);
+// update route (days/dayId)
+router.put("/:dayId", (req, res) => {
+  const { dayId } = req.params;
+  Day.findByIdAndUpdate(dayId, req.body, { new: true })
+    .then(day => {
+      res.redirect(`/days/${dayId}`);
     })
     .catch(error => {
       res.json(error);
     });
 });
 
-// destroy route
-router.delete("/:id", (req, res) => {
-  const id = req.params.id;
-  Day.findByIdAndRemove(id)
+// destroy route (days/dayId)
+router.delete("/:dayId", (req, res) => {
+  const { dayId } = req.params;
+  Day.findByIdAndRemove(dayId)
     .then(day => {
       res.redirect("/days");
     })
@@ -95,15 +138,17 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-// show route
-router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-  Day.findById(id)
+// show route (days/dayId)
+router.get("/:dayId", (req, res) => {
+  const { dayId } = req.params;
+  Day.findById(dayId)
+    .populate("exercises")
     .then(day => {
+      console.log(day);
       res.render("days/show.liquid", { day });
     })
     .catch(error => {
-      res.json(error);
+      console.log(error);
     });
 });
 

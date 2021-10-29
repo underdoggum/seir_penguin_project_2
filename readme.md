@@ -79,8 +79,10 @@ App
 ## Challenges
 [detail roadblocks here and anything you did to overcome them]
 
+ - Problem: How to relate two models in a one-to-many relationship
+   Solution: 
 
-
-
+ - Problem: Not being able to reference one model from another
+   Solution: Use Mongoose's powerful ```.populate()``` function to join the data. After figuring out the above, the "Day" model now had data that referenced an array of "Exercise" models, but to actually grab those models, I needed to populate them. D'oh!
 
 

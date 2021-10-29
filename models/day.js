@@ -16,7 +16,12 @@ const daysSchema = new Schema({
   workoutType: {
     type: String,
     required: true
+  },
+  exercises: {
+    type: [mongoose.Types.ObjectId],
+    ref: "Exercise"
   }
+  // timesCompleted: Number
 });
 
 const Day = model("Day", daysSchema);

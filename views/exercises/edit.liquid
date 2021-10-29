@@ -6,32 +6,20 @@
     <!-- maybe add font-awesome icons here -->
     <li><a href="/days">Days</a></li>
     <li><a href="/days/{{ day._id }}">Workout</a></li>
+    <li><a href="/days/{{ day._id }}/edit_exercises">Edit Exercises</a></li>
   </ul>
 </nav>
 <div class="container box">
-  <!-- <hr> -->
-  <!-- <a href="/days" class="button is-link mb-4">Back</a> -->
   <article>
-    <form action="/days/{{ day._id }}?_method=DELETE" method="post">
-      <input type="submit" class="button is-danger is-pulled-right ml-3 is-small" value="DELETE DAY">
-    </form>
-    <a href="/days/{{ day._id }}/edit" class="button is-warning is-pulled-right is-small">Edit Day</a>
     <h1 class="title is-4">
       Day: {{ day.name }}
     </h1>
     <h1 class="title is-3 has-text-centered">
       {{ day.workoutType }}
     </h1>
-    {% if day.workoutType == "Rest" %}
-      <p class="has-text-centered">Take a load off! You've earned it.</p>
-    {% else %}
-    {% endif %}
-
-    <!-- change the below line to link to the exercise list -->
     <div class="columns">
       <div class="column has-text-centered">
-
-        <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning">Edit Exercises</a>
+        <input class="button is-primary mt-4" type="submit" value="Change it">
       </div>
     </div>
     <table class="table container">

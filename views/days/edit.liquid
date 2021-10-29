@@ -9,18 +9,47 @@
     <li><a href="/days/{{ day._id }}/edit">Edit Workout</a></li>
   </ul>
 </nav>
-<div class="container box">
+<div class="container box has-text-centered">
   <form action="/days/{{ day._id }}?_method=PUT" method="post">
     <fieldset>
       <legend class="title is-4">Let's change Day {{ day.name }}</legend>
-      <!-- <label>
+      {% comment %}
+      <label>
         Day # <input type="text" name="name" value="{{ newDay }}" />
-      </label> -->
+      </label>
+      {% endcomment %}
       <br>
       
-      <label>
-        Workout type <input type="text" name="workoutType" placeholder="{{ day.workoutType }}" />
-      </label>
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if day.workoutType == "Rest" %}
+            checked value="Rest"
+          {% endif %}
+          > Rest&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if day.workoutType == "Pull" %}
+            checked value="Pull"
+          {% endif %}
+          > Pull&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if day.workoutType == "Push" %}
+            checked value="Push"
+          {% endif %}
+          > Push&nbsp;&nbsp;
+        </label>
+        <label class="radio">
+          <input type="radio" name="workoutType"
+          {% if day.workoutType == "Legs" %}
+            checked value="Legs"
+          {% endif %}
+          > Legs
+        </label>
+      </div>
       
     </fieldset>
     <input class="button is-primary mt-4" type="submit" value="Change Day {{ day.name }}">

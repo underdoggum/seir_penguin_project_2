@@ -15,7 +15,7 @@
     {% if day.workoutType == "Rest" %}
       <a class="button title is-5 m-2 is-warning is-light" href="/days/{{ day._id }}">Day {{ day.name }} - {{ day.workoutType }}</a>
     {% else %}
-      <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">Day {{ day.name }} - Workout {{ day.workoutType }}</a>
+      <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">Day {{ day.name }} - Workout - {{ day.workoutType }}</a>
     {% endif %}
 
   </article>
