@@ -4,6 +4,7 @@
 /////////////////////////////////////////
 // Setup
 /////////////////////////////////////////
+const { json } = require("express");
 const express = require("express");
 const Day = require("../models/day");
 const Exercise = require("../models/exercise");
@@ -91,21 +92,36 @@ router.get("/:dayId/edit_exercises", (req, res) => {
     });
 });
 
+////////
 // update route for exercises (days/dayId)
+////////
 router.put("/:dayId", (req, res) => {
   const { dayId } = req.params;
-  Day.findByIdAndUpdate(dayId, req.body, { new: true })
-  .populate("exercises")
-  .then(day => {
-    // try to delete everything inside of this day's exercises array, and push req.body.exercises, then finally save
+
+  Day.findById(dayId)
+    .populate("exercises")
+    .then(day => {
       console.log(req.body);
       console.log(day.exercises);
-      
+
       res.redirect(`/days/${dayId}`);
     })
     .catch(error => {
       res.json(error);
-    });
+    })
+
+  // Day.findByIdAndUpdate(dayId, req.body, { new: true })
+  // .populate("exercises")
+  // .then(day => {
+  //   // try to delete everything inside of this day's exercises array, and push req.body.exercises, then finally save
+  //     console.log(req.body);
+  //     console.log(day.exercises);
+      
+  //     res.redirect(`/days/${dayId}`);
+  //   })
+  //   .catch(error => {
+  //     res.json(error);
+  //   });
 });
 
 // edit route (days/dayId/edit)
