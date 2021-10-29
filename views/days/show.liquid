@@ -23,37 +23,38 @@
       {{ day.workoutType }}
     </h1>
     {% if day.workoutType == "Rest" %}
-      <p class="has-text-centered">Take a load off! You've earned it.</p>
+      <p class="has-text-centered pb-4">Take a load off! You've earned it.</p>
     {% else %}
     {% endif %}
 
     <!-- change the below line to link to the exercise list -->
-    <div class="columns">
-      <div class="column has-text-centered">
-
-        <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning">Edit Exercises</a>
-      </div>
-    </div>
-    <table class="table container">
-      <thead>
-        <tr>
-          <th>Exercise</th>
-          <th>Weight</th>
-          <th>Sets</th>
-          <th>Reps</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for theExercise in day.exercises %}
-          <tr>
-            <td>{{ theExercise.name }}</td>
-            <td>{{ theExercise.weight }} lbs</td>
-            <td>{{ theExercise.sets }}</td>
-            <td>{{ theExercise.reps }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% if day.workoutType != "Rest" %}
+      <div class="columns">
+        <div class="column has-text-centered">
+            <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning">Edit Exercises</a>
+          </div>
+        </div>
+        <table class="table container">
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Weight</th>
+              <th>Sets</th>
+              <th>Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for theExercise in day.exercises %}
+            <tr>
+              <td>{{ theExercise.name }}</td>
+              <td>{{ theExercise.weight }} lbs</td>
+              <td>{{ theExercise.sets }}</td>
+              <td>{{ theExercise.reps }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
   </article>
 </div>
 

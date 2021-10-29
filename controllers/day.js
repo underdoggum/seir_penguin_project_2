@@ -94,12 +94,13 @@ router.get("/:dayId/edit_exercises", (req, res) => {
 // update route for exercises (days/dayId)
 router.put("/:dayId", (req, res) => {
   const { dayId } = req.params;
-  console.log(req.body);
   Day.findByIdAndUpdate(dayId, req.body, { new: true })
-    .populate("exercises")
-    .then(day => {
-      // try to delete everything inside of this day's exercises array, and push req.body.exercises, then finally save
-      console.log(day);
+  .populate("exercises")
+  .then(day => {
+    // try to delete everything inside of this day's exercises array, and push req.body.exercises, then finally save
+      console.log(req.body);
+      console.log(day.exercises);
+      
       res.redirect(`/days/${dayId}`);
     })
     .catch(error => {
