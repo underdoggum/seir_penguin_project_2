@@ -10,6 +10,8 @@
   </ul>
 </nav>
 <div class="container box">
+  <a href="/days/{{ day._id }}" class="button is-link is-pulled-right is-small">Back to Workout</a>
+
   <article>
     <h1 class="title is-4">
       Day: {{ day.name }}
@@ -17,31 +19,46 @@
     <h1 class="title is-3 has-text-centered">
       {{ day.workoutType }}
     </h1>
-    <div class="columns">
-      <div class="column has-text-centered">
-        <input class="button is-primary mt-4" type="submit" value="Change it">
+    <form action="/days/{{ day._id }}?_method=PUT" method="post">
+      <div class="control">
+        <div class="columns">
+          <div class="column has-text-centered">
+            <input class="button is-primary" type="submit" value="Change it">
+          </div>
+        </div>
+        <table class="table container">
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Weight</th>
+              <th>Sets</th>
+              <th>Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for theExercise in day.exercises %}
+            <tr>
+              <td>
+                <input type="text" name="{{ theExercise[forloop.index0] }}.name" value="{{ theExercise.name }}">
+              </td>
+              <td>
+                <input type="number" step="5" name="{{ theExercise[forloop.index0] }}.weight" value="{{ theExercise.weight }}">
+              </td>
+              <td>
+                <input type="number" name="{{ theExercise[forloop.index0] }}.sets" value="{{ theExercise.sets }}">
+              </td>
+              <td>
+                <input type="number" name="{{ theExercise[forloop.index0] }}.reps" value="{{ theExercise.reps }}">
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-    </div>
-    <table class="table container">
-      <thead>
-        <tr>
-          <th>Exercise</th>
-          <th>Weight</th>
-          <th>Sets</th>
-          <th>Reps</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for theExercise in day.exercises %}
-          <tr>
-            <td>{{ theExercise.name }}</td>
-            <td>{{ theExercise.weight }} lbs</td>
-            <td>{{ theExercise.sets }}</td>
-            <td>{{ theExercise.reps }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      <div class="control">
+        <input type="reset" class="button is-warning" value="Reset">
+      </div>
+    </form>
   </article>
 </div>
 
