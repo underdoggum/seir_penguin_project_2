@@ -76,9 +76,7 @@ router.post("/", (req, res) => {
     });
 });
 
-////////
 // edit route for exercises (days/dayId/workout_edit)
-////////
 router.get("/:dayId/edit_exercises", (req, res) => {
   const { dayId } = req.params;
 
@@ -92,44 +90,54 @@ router.get("/:dayId/edit_exercises", (req, res) => {
     });
 });
 
-////////
-// update route for exercises (days/dayId)
-////////
+// combined update route for days and exercises (days/dayId)
 router.put("/:dayId", (req, res) => {
   const { dayId } = req.params;
+  console.log(req.body);
 
-  Day.findById(dayId)
-    .populate("exercises")
-    .then(day => {
-      day.exercises.forEach((e, index) => {
-        // find each exercise performed (and find by the Exercise model), then query that to update the document
-        Exercise.findById(e._id)
-          .then(ex => {
-            ex.name = req.body.name[index];
-            ex.weight = req.body.weight[index];
-            ex.sets = req.body.sets[index];
-            ex.reps = req.body.reps[index];
+  // if req.body receives exercise info like name, user must be editing exercises
+  if (req.body.name) {
+    Day.findById(dayId)
+      .populate("exercises")
+      .then(day => {
+        day.exercises.forEach((e, index) => {
+          // find each exercise performed (and find by the Exercise model), then query that to update the document
+          Exercise.findById(e._id)
+            .then(ex => {
+              ex.name = req.body.name[index];
+              ex.weight = req.body.weight[index];
+              ex.sets = req.body.sets[index];
+              ex.reps = req.body.reps[index];
 
-            // .save() technically returns a promise, but editing works for now
-            ex.save();
+              // .save() technically returns a promise here, but editing works for now
+              ex.save();
+            })
+            .catch(error => {
+              console.log(error);
+            })
           })
-          .catch(error => {
-            console.log(error);
-          })
+        res.redirect(`/days/${dayId}`);
       })
+      .catch(error => {
+        console.log(error);
+      });
+  } else {
+    // else req.body must be receiving day info because user is editing days
+    Day.findByIdAndUpdate(dayId, req.body, { new: true })
+    .then(day => {
       res.redirect(`/days/${dayId}`);
     })
     .catch(error => {
-      console.log(error);
+      res.json(error);
     });
-  
+  }
 });
 
 // edit route (days/dayId/edit)
 router.get("/:dayId/edit", (req, res) => {
   const { dayId } = req.params;
 
-  // for suggesting new days
+  // suggesting new days and workout type
   let newDay = 0;
   Day.find({})
     .then(days => {
@@ -148,17 +156,17 @@ router.get("/:dayId/edit", (req, res) => {
     });
 });
 
-// update route (days/dayId)
-router.put("/:dayId", (req, res) => {
-  const { dayId } = req.params;
-  Day.findByIdAndUpdate(dayId, req.body, { new: true })
-    .then(day => {
-      res.redirect(`/days/${dayId}`);
-    })
-    .catch(error => {
-      res.json(error);
-    });
-});
+// // update route (days/dayId)
+// router.put("/:dayId", (req, res) => {
+//   const { dayId } = req.params;
+//   Day.findByIdAndUpdate(dayId, req.body, { new: true })
+//     .then(day => {
+//       res.redirect(`/days/${dayId}`);
+//     })
+//     .catch(error => {
+//       res.json(error);
+//     });
+// });
 
 // destroy route (days/dayId)
 router.delete("/:dayId", (req, res) => {
@@ -178,7 +186,6 @@ router.get("/:dayId", (req, res) => {
   Day.findById(dayId)
     .populate("exercises")
     .then(day => {
-      // console.log(day);
       res.render("days/show.liquid", { day });
     })
     .catch(error => {

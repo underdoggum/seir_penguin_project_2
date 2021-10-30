@@ -7,20 +7,24 @@
   </ul>
 </nav>
 <div class="container box">
-  <a class="button m-3 is-link" href="/days/new">New Day</a>
+  <a class="button m-3 is-link is-rounded is-medium mb-5" href="/days/new">New Day</a>
   {% for day in days %}
   <article>
-    
     {% if day.workoutType == "Rest" %}
-      <a class="button title is-5 m-2 is-warning is-light" href="/days/{{ day._id }}">
+      <a class="button title is-5 m-2 is-warning is-light is-outlined is-rounded" href="/days/{{ day._id }}">
         Day {{ day.name }} - {{ day.workoutType }}
       </a>
     {% else %}
-      <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">
+      <a class="button title is-5 m-2 is-link is-light is-outlined is-rounded" href="/days/{{ day._id }}">
         Day {{ day.name }} - {{ day.workoutType }}
       </a>
     {% endif %}
-
+    {% comment %}
+    styling the last button differently than others
+    {% if forloop.last %}
+      
+    {% endif %}
+    {% endcomment %}
   </article>
   {% endfor %}
 </div>

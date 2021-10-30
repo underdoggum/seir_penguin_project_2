@@ -12,9 +12,12 @@
   <!-- <a href="/days" class="button is-link mb-4">Back</a> -->
   <article>
     <form action="/days/{{ day._id }}?_method=DELETE" method="post">
-      <input type="submit" class="button is-danger is-pulled-right ml-3 is-small" value="DELETE DAY">
+      <input type="submit" class="button is-danger is-pulled-right ml-3 is-small is-rounded" value="DELETE DAY">
     </form>
-    <a href="/days/{{ day._id }}/edit" class="button is-warning is-pulled-right is-small">Edit Workout Type</a>
+    <br>
+    <br>
+
+    <a href="/days/{{ day._id }}/edit" class="button is-warning is-pulled-right is-small is-rounded">Edit Workout Type</a>
     <h1 class="title is-4">
       Day: {{ day.name }}
     </h1>
@@ -30,7 +33,7 @@
     {% if day.workoutType != "Rest" %}
       <div class="columns">
         <div class="column has-text-centered">
-            <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning">Edit Exercises</a>
+            <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning is-rounded">Edit Exercises</a>
           </div>
         </div>
         <table class="table container">
@@ -44,7 +47,7 @@
           </thead>
           <tbody>
             {% for theExercise in day.exercises %}
-            <tr>
+            <tr class="m-0">
               <td>{{ theExercise.name }}</td>
               <td>{{ theExercise.weight }} lbs</td>
               <td>{{ theExercise.sets }}</td>

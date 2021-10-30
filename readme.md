@@ -77,7 +77,6 @@ App
 
 
 ## Challenges
-[detail roadblocks here and anything you did to overcome them]
 
  - Problem: How to relate two models in a one-to-many relationship
    Solution: 
@@ -87,3 +86,6 @@ App
 
  - Problem: I couldn't figure out how to edit the exercises as a whole for each day. I could get to the edit route and update the day, but to edit the exercises, I couldn't just edit them as a sub-document within the ```Day.findById(...)``` query
    Solution: I had to find each exercise within that day, and for each of them, I needed to find the exercise by querying that Exercise model.
+
+ - Problem: The edit routes (for "Day" and "Exercise") were unique routes, but they updated to the same update route (/dayId)
+   Solution: Noticing that the request received in ```req.body``` was different depending on the update, I added a simple if statement depending on that input
