@@ -39,16 +39,16 @@
             {% for theExercise in day.exercises %}
             <tr>
               <td>
-                <input class="input is-info has-text-centered is-small" type="text" name="name" value="{{ theExercise.name }}">
+                <input class="input is-info has-text-centered is-small" type="text" name="name" value="{{ theExercise.name }}" required>
               </td>
               <td>
-                <input class="input is-info has-text-centered is-small" type="number" step="5" name="weight" value="{{ theExercise.weight }}">
+                <input class="input is-info has-text-centered is-small" type="number" step="5" min="0" name="weight" value="{{ theExercise.weight }}">
               </td>
               <td>
-                <input class="input is-info has-text-centered is-small" type="number" name="sets" value="{{ theExercise.sets }}">
+                <input class="input is-info has-text-centered is-small" type="number" min="0" name="sets" value="{{ theExercise.sets }}">
               </td>
               <td>
-                <input class="input is-info has-text-centered is-small" type="number" name="reps" value="{{ theExercise.reps }}">
+                <input class="input is-info has-text-centered is-small" type="number" min="0" name="reps" value="{{ theExercise.reps }}">
               </td>
             </tr>
             {% endfor %}
