@@ -3,10 +3,9 @@
 
 <nav class="breadcrumb container" aria-label="breadcrumbs">
   <ul>
-    <!-- maybe add font-awesome icons here -->
-    <li><a href="/days">Days</a></li>
-    <li><a href="/days/{{ day._id }}">Workout</a></li>
-    <li><a href="/days/{{ day._id }}/edit_exercises">Edit Exercises</a></li>
+    <li><a href="/days"><i class="fas fa-home"></i>&nbsp;&nbsp;Days</a></li>
+    <li><a href="/days/{{ day._id }}"><i class="fas fa-dumbbell"></i>&nbsp;&nbsp;Workout</a></li>
+    <li><a href="/days/{{ day._id }}/edit_exercises"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit Exercises</a></li>
   </ul>
 </nav>
 <div class="container box">
@@ -40,16 +39,16 @@
             {% for theExercise in day.exercises %}
             <tr>
               <td>
-                <input type="text" name="{{ theExercise[forloop.index0] }}.name" value="{{ theExercise.name }}">
+                <input type="text" name="name" value="{{ theExercise.name }}">
               </td>
               <td>
-                <input type="number" step="5" name="{{ theExercise[forloop.index0] }}.weight" value="{{ theExercise.weight }}">
+                <input type="number" step="5" name="weight" value="{{ theExercise.weight }}">
               </td>
               <td>
-                <input type="number" name="{{ theExercise[forloop.index0] }}.sets" value="{{ theExercise.sets }}">
+                <input type="number" name="sets" value="{{ theExercise.sets }}">
               </td>
               <td>
-                <input type="number" name="{{ theExercise[forloop.index0] }}.reps" value="{{ theExercise.reps }}">
+                <input type="number" name="reps" value="{{ theExercise.reps }}">
               </td>
             </tr>
             {% endfor %}

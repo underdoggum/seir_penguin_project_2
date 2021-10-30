@@ -83,6 +83,7 @@ App
    Solution: 
 
  - Problem: Not being able to reference one model from another
-   Solution: Use Mongoose's powerful ```.populate()``` function to join the data. After figuring out the above, the "Day" model now had data that referenced an array of "Exercise" models, but to actually grab those models, I needed to populate them. D'oh!
+   Solution: Use Mongoose's powerful ```.populate("...")``` function to join the data. After figuring out the above, the "Day" model now had data that referenced an array of "Exercise" models, but to actually grab those models, I needed to populate them. D'oh!
 
-
+ - Problem: I couldn't figure out how to edit the exercises as a whole for each day. I could get to the edit route and update the day, but to edit the exercises, I couldn't just edit them as a sub-document within the ```Day.findById(...)``` query
+   Solution: I had to find each exercise within that day, and for each of them, I needed to find the exercise by querying that Exercise model.

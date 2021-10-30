@@ -101,27 +101,28 @@ router.put("/:dayId", (req, res) => {
   Day.findById(dayId)
     .populate("exercises")
     .then(day => {
-      console.log(req.body);
-      console.log(day.exercises);
+      day.exercises.forEach((e, index) => {
+        // find each exercise performed (and find by the Exercise model), then query that to update the document
+        Exercise.findById(e._id)
+          .then(ex => {
+            ex.name = req.body.name[index];
+            ex.weight = req.body.weight[index];
+            ex.sets = req.body.sets[index];
+            ex.reps = req.body.reps[index];
 
+            // .save() technically returns a promise, but editing works for now
+            ex.save();
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      })
       res.redirect(`/days/${dayId}`);
     })
     .catch(error => {
-      res.json(error);
-    })
-
-  // Day.findByIdAndUpdate(dayId, req.body, { new: true })
-  // .populate("exercises")
-  // .then(day => {
-  //   // try to delete everything inside of this day's exercises array, and push req.body.exercises, then finally save
-  //     console.log(req.body);
-  //     console.log(day.exercises);
-      
-  //     res.redirect(`/days/${dayId}`);
-  //   })
-  //   .catch(error => {
-  //     res.json(error);
-  //   });
+      console.log(error);
+    });
+  
 });
 
 // edit route (days/dayId/edit)

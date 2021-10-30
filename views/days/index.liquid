@@ -3,8 +3,7 @@
 
 <nav class="breadcrumb container" aria-label="breadcrumbs">
   <ul>
-    <!-- maybe add font-awesome icons here -->
-    <li><a href="/days">Days</a></li>
+    <li><a href="/days"><i class="fas fa-home"></i>&nbsp;&nbsp;Days</a></li>
   </ul>
 </nav>
 <div class="container box">
@@ -13,9 +12,13 @@
   <article>
     
     {% if day.workoutType == "Rest" %}
-      <a class="button title is-5 m-2 is-warning is-light" href="/days/{{ day._id }}">Day {{ day.name }} - {{ day.workoutType }}</a>
+      <a class="button title is-5 m-2 is-warning is-light" href="/days/{{ day._id }}">
+        Day {{ day.name }} - {{ day.workoutType }}
+      </a>
     {% else %}
-      <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">Day {{ day.name }} - Workout - {{ day.workoutType }}</a>
+      <a class="button title is-5 m-2 is-link is-light" href="/days/{{ day._id }}">
+        Day {{ day.name }} - {{ day.workoutType }}
+      </a>
     {% endif %}
 
   </article>
