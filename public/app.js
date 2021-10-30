@@ -1,6 +1,7 @@
-
 //////////////////////////////////////////
 // Interfacing with Youtube API v3
+// Most of the code in this section courtesy of the YouTube API doc for searching video lists
+// https://developers.google.com/youtube/v3/docs/search/list
 //////////////////////////////////////////
 function loadClient() {
   gapi.client.setApiKey("AIzaSyAgaEnauGZWMtlYvvbq4AyCGv7vsRHj0i8");
@@ -30,8 +31,11 @@ function execute(id) {
             function(err) { console.error("Execute error", err); });
 }
 gapi.load("client");
-//////////////////////////////////////////
 
+
+//////////////////////////////////////////
+// jQuery video button
+//////////////////////////////////////////
 // load the client once this script has finished loading
 $.getScript("https://apis.google.com/js/api.js", () => {
   loadClient();

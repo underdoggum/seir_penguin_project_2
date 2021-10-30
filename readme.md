@@ -95,3 +95,5 @@ App
 ## Known Bugs
 
  - When user changes a specific exercise and submits changes, it doesn't always update immediately upon redirect, but refreshing the page will confirm that the change was made
+
+ 
