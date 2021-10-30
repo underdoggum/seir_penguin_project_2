@@ -20,6 +20,7 @@ This is a full-stack (MELN) app implementing Model-View-Controller design with R
  - NodeJS as a backend server
  - Bulma CSS framework (mobile-first, flexible, and lightweight!)
  - Deployed with Heroku
+ - (Extra) Interface with YouTube API v3, so when users click a workout, they receive a "how to" video
 
 
 ## User Stories
