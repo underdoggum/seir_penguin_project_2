@@ -39,6 +39,7 @@
         <table class="table container">
           <thead>
             <tr>
+              <th>How-to</th>
               <th>Exercise</th>
               <th>Weight</th>
               <th>Sets</th>
@@ -47,7 +48,14 @@
           </thead>
           <tbody>
             {% for theExercise in day.exercises %}
+            
             <tr class="m-0">
+              <td>
+                <button id="{{ theExercise.name | remove:" " }}" class="button-howto button is-info is-light">
+                  <i class="fas fa-video"></i>
+                </button>
+              </td>
+
               <td>{{ theExercise.name }}</td>
               <td>{{ theExercise.weight }} lbs</td>
               <td>{{ theExercise.sets }}</td>
