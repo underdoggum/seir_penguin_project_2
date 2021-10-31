@@ -91,10 +91,13 @@ App
  - Problem: The edit routes (for "Day" and "Exercise") were unique routes, but they updated to the same update route (/dayId)
    Solution: Noticing that the request received in ```req.body``` was different depending on the update, I added a simple if statement depending on that input
 
+ - Problem: When confirming Day deletion, user is still able to click unrelated buttons because the popup confirmation is just a visibility toggle on the notification
+   Solution: Implement a generic modal with z-index above all other elements except the delete confirmation popup
+
 
 ## Known Bugs
 
  - When user changes a specific exercise and submits changes, it doesn't always update immediately upon redirect, but refreshing the page will confirm that the change was made
  - When a day's workout type is set to "Rest" and submitted as such, if the user changes to any other workout type, it won't populate the exercise data
- - When confirming Day deletion, user is still able to click unrelated buttons because the popup confirmation is just a visibility toggle on the notification
+ - 
  
