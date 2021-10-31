@@ -7,7 +7,7 @@ const starterExercises = {
 
   Push: [{ name: "Bench Press", weight: 135, sets: 3, reps: 10 },
   { name: "Overhead Press", weight: 55, sets: 3, reps: 10 },
-  { name: "Incline Dumbbell Press", weight: 35, sets: 3, reps: 12 },
+  { name: "Incline Press", weight: 35, sets: 3, reps: 12 },
   { name: "Triceps Pushdown", weight: 35, sets: 3, reps: 12 },],
 
   Legs: [{ name: "Squat", weight: 95, sets: 3, reps: 8 },
