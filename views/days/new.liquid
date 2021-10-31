@@ -20,39 +20,6 @@
           </div>
         </div>
       
-      {% comment %}
-      <div class="control">
-        <label class="radio">
-          <input type="radio" name="workoutType"
-          {% assign mod = newDay | modulo: 5 %}
-          {% if mod == 0 or mod == 2 %}
-            checked value="Rest"
-          {% endif %}
-          > Rest&nbsp;&nbsp;
-        </label>
-        <label class="radio">
-          <input type="radio" name="workoutType"
-          {% if mod == 1 %}
-            checked value="Pull"
-          {% endif %}
-          > Pull&nbsp;&nbsp;
-        </label>
-        <label class="radio">
-          <input type="radio" name="workoutType"
-          {% if mod == 3 %}
-            checked value="Push"
-          {% endif %}
-          > Push&nbsp;&nbsp;
-        </label>
-        <label class="radio">
-          <input type="radio" name="workoutType"
-          {% if mod == 4 %}
-            checked value="Legs"
-          {% endif %}
-          > Legs
-        </label>
-      </div>
-      {% endcomment %}
       <div class="control">
         <div class="select is-multiple">
           <select multiple size="4" class="mb-4" name="workoutType">
@@ -89,7 +56,7 @@
           </select>
         </div>
       </div>
-      
+
     </fieldset>
     <input class="button is-primary mt-4 is-rounded" type="submit" value="Let's begin">
   </form>

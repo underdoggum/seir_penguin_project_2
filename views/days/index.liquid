@@ -6,18 +6,38 @@
     <li><a href="/days"><i class="fas fa-home"></i>&nbsp;&nbsp;Days</a></li>
   </ul>
 </nav>
-<div class="container box">
+<div class="container box has-text-centered is-shadowless">
   <a class="button m-3 is-link is-rounded is-medium mb-5" href="/days/new">New Day</a>
-  {% for day in days %}
-  <article>
+  <div class="columns is-multiline is-vcentered">
+    {% for day in days %}
     {% if day.workoutType == "Rest" %}
-      <a class="button title is-5 m-2 is-warning is-light is-outlined is-rounded" href="/days/{{ day._id }}">
-        Day {{ day.name }} - {{ day.workoutType }}
-      </a>
+      <div class="column">
+        <div class="box is-one-fifth">
+          <a class="button title is-5 m-2 is-warning is-light is-outlined is-rounded" href="/days/{{ day._id }}">
+            Day {{ day.name }} - {{ day.workoutType }}
+          </a>
+          {% comment %} Warning: bad code below {% endcomment %}
+          <ul>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+          </ul>
+        </div>
+      </div>
     {% else %}
-      <a class="button title is-5 m-2 is-link is-light is-outlined is-rounded" href="/days/{{ day._id }}">
-        Day {{ day.name }} - {{ day.workoutType }}
-      </a>
+      <div class="column">
+        <div class="box is-one-fifth">
+          <a class="button title is-5 m-2 is-link is-light is-outlined is-rounded" href="/days/{{ day._id }}">
+            Day {{ day.name }} - {{ day.workoutType }}
+          </a>
+          <ul>
+            {% for theExercise in day.exercises %}
+              <li class="ml-5">{{ theExercise.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
     {% endif %}
     {% comment %}
     maybe style the last button differently than others
@@ -25,8 +45,8 @@
       
     {% endif %}
     {% endcomment %}
-  </article>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}

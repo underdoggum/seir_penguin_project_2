@@ -37,21 +37,22 @@
             <div class="delete-notification is-hidden notification is-danger is-light">
               <button class="delete is-medium" type="button" onclick="hideDelete()"></button>
               <br>
-              <div class="block pl-4">
+              <div class="block">
                 Are you sure?
               </div>
-              <div class="block has-text-centered pl-4 pb-4">
+              <div class="block has-text-centered">
                 <input type="submit" class="button is-danger is-rounded" value="YES">
+                <button class="box button is-danger is-light is-rounded ml-5 mt-3" type="button" onclick="hideDelete()">No</button>
               </div>
             </div>
           </div>
         </form>
         <div class="level-item">
 
-          <button id="delete-button" class="level-item button is-danger is-small is-rounded mr-3" onclick="confirmDelete()">DELETE</button>
+          <button id="delete-button" class="level-item button is-danger is-rounded mr-3" onclick="confirmDelete()">DELETE</button>
         </div>
         <div class="level-item">
-          <a href="/days/{{ day._id }}/edit" class="button is-warning is-small is-rounded">Edit Workout Type</a>
+          <a href="/days/{{ day._id }}/edit" class="button is-warning is-rounded">Edit Workout Type</a>
         </div>
       </div>
     </div>
@@ -71,7 +72,7 @@
             <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning is-rounded">Edit Exercises</a>
           </div>
         </div>
-        <table class="table container">
+        <table class="table is-striped is-narrow is-hoverable container">
           <thead>
             <tr>
               <th>Form</th>
@@ -102,13 +103,13 @@
   </article>
 </div>
 
+<!-- modal popup for youtube video -->
 <div id="modal">
   <div class="container box has-text-centered" id="modal-item">
     <!-- <a id="close" href="#">CLOSE</a> -->
-    <button id="close" class="delete is-medium is-pulled-right"></button>
+    <button id="close" class="delete is-large"></button>
     <br>
-    <br>
-    <iframe id="youtube-modal" title="description" width="420" height="315"></iframe>
+    <iframe id="youtube-modal" title="Youtube video for the exercise" allowfullscreen="true" allowscriptaccess="always"></iframe>
   </div>
 </div>
 

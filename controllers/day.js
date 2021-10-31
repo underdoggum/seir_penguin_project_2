@@ -23,6 +23,7 @@ const router = express.Router();
 // index route (days/new)
 router.get("/", async (req, res) => {
   Day.find({})
+    .populate("exercises")
     .sort({ name: -1 })    // used to sort by decreasing days
     .then(days => {
       res.render("days/index.liquid", { days });

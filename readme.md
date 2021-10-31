@@ -34,6 +34,7 @@ This is a full-stack (MELN) app implementing Model-View-Controller design with R
  - Day:
     - day number ("Day 1", "Day 2", ad infinitum)
     - workout type ("Workout A", "Workout B", or "Workout C")
+    - Exercises (an array of exercises from the Exercise Schema below)
  - Exercise (a child of the current Day's "workout type"):
     - name of exercise
     - weight number
@@ -49,18 +50,19 @@ App
  │             │        ├── 135 lbs
  │             │        ├── 3 sets
  │             │        └── 10 reps
- │             └── Lateral raises
- │                      ├── 10 lbs
- │                      ├── 4 sets
- │                      └── 12 reps
+ │             ├── Lateral raises
+ │             │        ├── 10 lbs
+ │             │        ├── 4 sets
+ │             │        └── 12 reps
+ │             └ ...
  ├── Day 2
  │     └── Pull Day
- │             └── Pull-ups
- │                      ├── bodyweight
- │                      ├── 2 sets
- │                      └── 8 reps
- │
- └── Day 3
+ │             ├── Deadlift
+ │             │        ├── 225 lbs
+ │             │        ├── 3 sets
+ │             │        └── 8 reps
+ │             └ ...
+ └── ...
 ```
 
 
@@ -98,6 +100,15 @@ App
 ## Known Bugs
 
  - When user changes a specific exercise and submits changes, it doesn't always update immediately upon redirect, but refreshing the page will confirm that the change was made
+
  - When a day's workout type is set to "Rest" and submitted as such, if the user changes to any other workout type, it won't populate the exercise data
- - 
+
+ - Exercise table is overflowing on iPhone 5 screen
+
+ - YouTube API v3 quota (specifically "google.discovery.Discovery.GetDiscoveryRest") becomes easily flooded with requests during testing, exceeding the daily request quota limit (at 10,000 requests per day!)
  
+
+## Extra Features To-Do:
+ - When creating a new Day, automatically suggest weight increase of 5% (rounded to nearest 5 lb increment) of the previous weight
+   - This requires adding a "count" property to the Exercise mongoose schema to be able to calculate new suggested weight from previous weight
+ - Ability to fully add/delete exercise items on ".../edit_exercises" page
