@@ -11,16 +11,42 @@
   <!-- <hr> -->
   <!-- <a href="/days" class="button is-link mb-4">Back</a> -->
   <article>
-    <form action="/days/{{ day._id }}?_method=DELETE" method="post">
-      <input type="submit" class="button is-danger is-pulled-right ml-3 is-small is-rounded" value="DELETE DAY">
-    </form>
-    <br>
-    <br>
+    <div class="level">
+      <div class="level-left">
+        <h1 class="title is-4 has-text-centered">
+          Day: {{ day.name }}
+        </h1>
+      </div>
+      <div class="level-right">
+        <form class="level-item" action="/days/{{ day._id }}?_method=DELETE" method="post">
 
-    <a href="/days/{{ day._id }}/edit" class="button is-warning is-pulled-right is-small is-rounded">Edit Workout Type</a>
-    <h1 class="title is-4">
-      Day: {{ day.name }}
-    </h1>
+          {% comment %} jQuery here to toggle Bulma's "is-hidden" class for popup delete confirmation {% endcomment %}
+          <script>
+            function confirmDelete() {
+              $(".delete-notification").removeClass("is-hidden");
+            } 
+            function hideDelete() {
+              $(".delete-notification").addClass("is-hidden");
+            }
+          </script>
+
+          <div class="delete-notification is-hidden notification is-danger is-light is-pulled-right">
+            <button class="delete is-medium" type="button" onclick="hideDelete()"></button>
+            <div class="block">
+              Are you sure?
+            </div>
+            <div class="block">
+              <input type="submit" class="button is-danger is-small is-rounded" value="DELETE DAY">
+            </div>
+          </div>
+        </form>
+        <button class="button is-danger is-small is-rounded mr-3" onclick="confirmDelete()">DELETE</button>
+        <div class="level-item">
+          <a href="/days/{{ day._id }}/edit" class="button is-warning is-small is-rounded">Edit Workout Type</a>
+        </div>
+      </div>
+    </div>
+    
     <h1 class="title is-3 has-text-centered">
       {{ day.workoutType }}
     </h1>
@@ -39,7 +65,7 @@
         <table class="table container">
           <thead>
             <tr>
-              <th>How-to</th>
+              <th>Form</th>
               <th>Exercise</th>
               <th>Weight</th>
               <th>Sets</th>
@@ -55,7 +81,6 @@
                   <i class="fas fa-video"></i>
                 </button>
               </td>
-
               <td>{{ theExercise.name }}</td>
               <td>{{ theExercise.weight }} lbs</td>
               <td>{{ theExercise.sets }}</td>

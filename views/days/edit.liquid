@@ -12,6 +12,9 @@
   <form action="/days/{{ day._id }}?_method=PUT" method="post">
     <fieldset>
       <legend class="title is-4">Let's change Day {{ day.name }}</legend>
+      <input class="button is-warning is-rounded mb-3" type="reset" value="Reset">
+      <input class="button is-primary is-rounded mb-3 ml-5" type="submit" value="Change">
+
       {% comment %}
       <label>
         Day # <input type="text" name="name" value="{{ newDay }}" />
@@ -109,7 +112,6 @@
       {% endcomment %}
       
     </fieldset>
-    <input class="button is-primary mt-4 is-rounded" type="submit" value="Change Day {{ day.name }}">
   </form>
 </div>
 

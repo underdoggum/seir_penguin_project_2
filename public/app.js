@@ -44,6 +44,6 @@ $.getScript("https://apis.google.com/js/api.js", () => {
 // jQuery to grab button and pass the id into Youtube API query for redirecting
 $(".button-howto").on("click", function() {
 
-  execute(this.id)
+  execute("how to perform " + this.id)
 
 });
