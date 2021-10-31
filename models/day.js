@@ -20,8 +20,8 @@ const daysSchema = new Schema({
   exercises: {
     type: [mongoose.Types.ObjectId],
     ref: "Exercise"
-  }
-  // timesCompleted: Number
+  },
+  username: String
 });
 
 const Day = model("Day", daysSchema);

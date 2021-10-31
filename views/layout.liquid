@@ -18,10 +18,28 @@
     gymrift<span class="title is-6 p-2">3 day split</span>
   </header>
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  
+  {% if main == true %}
+    {% comment %} if user is NOT logged in, display links to log in {% endcomment %}
+    <div class="container has-text-centered">
+      <a href="/" class="button block m-2">Home</a>
+      <a href="/auth/login" id="login-button" class="button block m-2">Login</a>
+      <a href="/auth/signup" id="signup-button" class="button block m-2">Sign Up</a>
+    </div>
+    <main>
+      {% block auth %}{% endblock %}
+    </main>
+
+  {% else %}
+    {% comment %} if user is logged in, display the main content {% endcomment %}
+    <main>
+      <div class="container">
+        <a href="/auth/logout" id="signup-button" class="button block m-2 is-pulled-right is-rounded is-small">Logout</a>
+      </div>
+      {% block content %}{% endblock %}
+    </main>
+    {% endif %}
+    
+    
   <footer class="container mt-4 has-text-centered">
     Site by Nathan Noack &nbsp;&nbsp;|&nbsp;&nbsp; Atlanta, GA 2021 &nbsp;&nbsp;|&nbsp;&nbsp; All rights reserved
   </footer>

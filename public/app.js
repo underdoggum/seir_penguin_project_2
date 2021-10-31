@@ -56,3 +56,14 @@ $(".button-howto").on("click", function() {
   execute("how to perform " + this.id);
 
 });
+
+//////////////////////////////////////////
+// Signup and Login button handling
+//////////////////////////////////////////
+// $("#signup-button").on("click", function() {
+//   $(this).hide();
+// });
+
+// $("#login-button").on("click", function() {
+//   $(this).hide();
+// });

@@ -24,22 +24,32 @@ This is a full-stack (MELN) app implementing Model-View-Controller design with R
 
 
 ## User Stories
-  - This workout app allows a user to create workouts based on their personal preference
-  - It starts with a Day, which has one of three types of exercises (A, B, or C)
-  - Then, a user can choose from a list of pre-filled exercises to perform (or create a new exercise), and when choosing, the exercises show a form for entering in their performed weight, number of sets, and number of reps (the numbers for weight/sets/reps are also suggested in the exercise submission form)
+ - This workout app allows a user to create workouts based on their personal preference
+ - It starts with a Day, which has one of three types of exercises (Pull, Push, or Legs)
+ - Then, a user can choose from a list of pre-filled exercises to perform (or edit them), and when choosing, the exercises show a form for entering in their performed weight, number of sets, and number of reps (the numbers for weight/sets/reps are also suggested in the exercise submission form)
    - A user must be able to easily navigate the tree of Days/Workouts/Exercises from any given location in the app
+#### Special Features
+ - Users can change individual exercises and check their form beforehand via the quick YouTube video link beside the exercise
 
 
 ## Models
  - Day:
     - day number ("Day 1", "Day 2", ad infinitum)
     - workout type ("Workout A", "Workout B", or "Workout C")
-    - Exercises (an array of exercises from the Exercise Schema below)
+    - exercises (an array of exercises from the Exercise Schema below)
+    - username (for making days depend on the user logged in)
+
  - Exercise (a child of the current Day's "workout type"):
     - name of exercise
     - weight number
     - sets number
     - reps number
+    - day (with ObjectID pointing to the Day model above)
+
+ - User:
+    - username
+    - password
+
 
 #### Example
 ```
@@ -67,15 +77,17 @@ App
 
 
 ## RESTful Route Table
-| Action  | Path      | HTTP Verb | Liquid view filename | Purpose                                                 |
-|:-------:|:---------:|:---------:|:--------------------:|:-------------------------------------------------------:|
-| Index   | /         | GET       | index.liquid         | List all Days                                           |
-| Show    | /:id      | GET       | show.liquid          | Show info about one Day                                 |
-| New     | /new      | GET       | new.liquid           | Show a form to complete for creating a new Day          |
-| Create  | /         | POST      |                      | Create a new Day, then redirect to root path            |
-| Edit    | /:id/edit | GET       | edit.liquid          | Show a form to complete for editing an existing Day     |
-| Update  | /:id      | PUT       |                      | Update the edited Day from the "Edit route"             |
-| Destroy | /:id      | DELETE    |                      | Delete a specific Day                                   |
+| Action  | Path                        | HTTP Verb | Liquid view filename  | Purpose                                                                        |
+|:-------:|:---------------------------:|:---------:|:---------------------:|:------------------------------------------------------------------------------:|
+| Index   | /days                       | GET       | days/index.liquid     | List all Days                                                                  |
+| Show    | /days/:dayId                | GET       | days/show.liquid      | Show info about one Day                                                        |
+| New     | /days/new                   | GET       | days/new.liquid       | Show a form to complete for creating a new Day                                 |
+| Create  | /days                       | POST      |                       | Create a new Day, then redirect to root path                                   |
+| Edit Exercises   | /days/:dayId/edit_exercises | GET       | exercises/edit.liquid | Show a form to complete for editing exercises                                  |
+| Edit Days   | /days/:dayId/edit           | GET       | days/edit.liquid      | Show a form to complete for editing a Day                                      |
+| Update  | /days/:dayId                | PUT       |                       | Update the edited Day OR the edited exercises from the respective "Edit route" |
+| Destroy | /days/:dayId                | DELETE    |                       | Delete a specific Day                                                          |
+
 
 
 

@@ -1,14 +1,15 @@
-// Logic for connecting mongo documents thanks to Alex Merced
+// Logic for connecting mongo documents courtesy of Alex Merced
 // https://www.youtube.com/watch?v=cu6VQgT3EEI
 
 /////////////////////////////////////////
 // Setup
 /////////////////////////////////////////
-const { json } = require("express");
+// const { json } = require("express");
 const express = require("express");
 const Day = require("../models/day");
 const Exercise = require("../models/exercise");
 const starterExercises = require("../models/starterExercises");
+const { auth } = require("./middleware");
 
 
 /////////////////////////////////////////
@@ -18,11 +19,17 @@ const router = express.Router();
 
 
 /////////////////////////////////////////
-// Days routes
+// Middleware
+/////////////////////////////////////////
+router.use(auth);
+
+
+/////////////////////////////////////////
+// Routes
 /////////////////////////////////////////
 // index route (days/new)
 router.get("/", async (req, res) => {
-  Day.find({})
+  Day.find({ username: req.session.username })
     .populate("exercises")
     .sort({ name: -1 })    // used to sort by decreasing days
     .then(days => {
@@ -48,6 +55,9 @@ router.get("/new", (req, res) => {
 
 // create route (days/new)
 router.post("/", (req, res) => {
+  req.body.username = req.session.username;
+
+
   Day.create(req.body)
     .then(day => {
       // create an array of exercises based on the day's workout type that's selected
@@ -110,7 +120,7 @@ router.put("/:dayId", (req, res) => {
               ex.sets = req.body.sets[index];
               ex.reps = req.body.reps[index];
 
-              // .save() technically returns a promise here, but editing works for now
+              // .save() technically returns a promise here, but editing works for now, may be the problem with exercises not updating immediately
               ex.save();
             })
             .catch(error => {
@@ -156,18 +166,6 @@ router.get("/:dayId/edit", (req, res) => {
       res.json(error);
     });
 });
-
-// // update route (days/dayId)
-// router.put("/:dayId", (req, res) => {
-//   const { dayId } = req.params;
-//   Day.findByIdAndUpdate(dayId, req.body, { new: true })
-//     .then(day => {
-//       res.redirect(`/days/${dayId}`);
-//     })
-//     .catch(error => {
-//       res.json(error);
-//     });
-// });
 
 // destroy route (days/dayId)
 router.delete("/:dayId", (req, res) => {

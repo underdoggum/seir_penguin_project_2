@@ -1,6 +1,33 @@
 {% layout "layout.liquid" %}
-{% block content %}
+{% block auth %}
 
+
+
+<div class="container has-text-centered">
+  <h3 class="title is-3">Sign Up</h3>
+  <form action="/auth/signup" method="post">
+    <div class="columns is-centered mt-4">
+
+      <div class="column is-one-fifth block">
+        <label for="username" class="label">Username</label>
+        <input class="input" type="text" name="username" placeholder="Username" required>
+      </div>
+      <div class="column is-one-fifth block">
+        <label for="password" class="label">Password</label>
+        <input class="input" type="password" name="password" placeholder="Password" required>
+      </div>
+    </div>
+    <div class="block">
+      <input class="button is-rounded is-primary" type="submit" value="Create user">
+    </div>
+  </form>
+</div>
+
+
+
+
+
+{% comment %}
 <nav class="breadcrumb container" aria-label="breadcrumbs">
   <ul>
     <li><a href="/days"><i class="fa fa-home"></i>&nbsp;&nbsp;Days</a></li>
@@ -55,5 +82,8 @@
     </fieldset>
   </form>
 </div>
+{% endcomment %}
+
+
 
 {% endblock %}
