@@ -43,9 +43,16 @@ router.get("/", async (req, res) => {
 // new route (days/new)
 router.get("/new", (req, res) => {
   let newDay = 0;         // for suggesting new days and workoutTypes
+  console.log(req.session.username)
   Day.find({})
     .then(days => {
       newDay = days.length + 1;
+      
+      // need below for non-seeded session
+      if (req.session.username !== "admin") {
+        newDay = 1;
+      }
+
       res.render("days/new.liquid", { newDay });
     })
     .catch(error => {
