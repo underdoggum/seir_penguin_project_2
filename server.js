@@ -21,7 +21,7 @@ const app = require("liquid-express-views")(express());
 /////////////////////////////////////////
 // Middleware
 /////////////////////////////////////////
-app.use(morgan("tiny"));    // used for logging requests
+app.use(morgan("tiny"));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -31,7 +31,6 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.DATABASE_URL
-    // mongoOptions: advancedOptions
   })
   // turn on below when deploying via Heroku
   // cookie: { secure: true }
@@ -52,6 +51,12 @@ app.get("/", (req, res) => {
   // The first 5 days are pre-filled with suggested exercises, but feel free to change these up.
   // When starting a new day of exercises, the next suggested workout is applied, but also feel free to adjust to your liking.`);
 });
+
+app.get("/error", (req, res) => {
+  const error = req.query.error || res.redirect("404.html");
+
+  res.render("error.liquid", { error })
+})
 
 // catch all for unknown routes
 app.all("*", (req, res) => {

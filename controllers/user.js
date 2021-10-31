@@ -56,11 +56,11 @@ router.post("/login", (req, res) => {
           res.redirect("/days");
         } else {
           // change to route to an error page
-          res.status(400).json({ error: "Password does not match" });
+          res.redirect("/error?error=The%20password%20does%20not%20match");
         }
       } else {
         // change to route to an error page
-        res.status(400).json({ error: "User does not exist" });
+        res.redirect("/error?error=That%20user%20does%20not%20exist");
       }
     })
     .catch(error => {
