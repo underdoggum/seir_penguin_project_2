@@ -25,10 +25,11 @@ db.on("open", () => {
   // erase all days and all exercises to re-seed
   Day.deleteMany({})
     .then(data => {
+      console.log("Day: ", data);
       Exercise.deleteMany({})
-        .then(data => { console.log(data) });
+        .then(data => { console.log("Exercise: ", data) });
       User.deleteMany({})
-        .then(data => { console.log(data) });
+        .then(data => { console.log("User: ", data) });
       Day.create(starterDays)
         .then(days => {
           // need to seed each day with respective exercises
@@ -43,7 +44,7 @@ db.on("open", () => {
                 });
                 day.save()
                   .then(e => {
-                    console.log(day);
+                    // console.log(day);
                   });
               });
           });
