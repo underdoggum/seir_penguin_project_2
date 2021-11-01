@@ -6,8 +6,7 @@
 
 //////////////////////////////////////////
 function loadClient() {
-  // uncomment below when it's showtime
-  console.log($("iframe").attr("class"))
+
   gapi.client.setApiKey($("iframe").attr("class"));
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
       .then(function() { console.log("GAPI client loaded for API"); },
