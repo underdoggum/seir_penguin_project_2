@@ -27,10 +27,10 @@
 
   {% else %}
     {% comment %} if user is logged in, display the main content {% endcomment %}
+    <div class="container">
+      <a href="/auth/logout" id="logout-button" class="button is-pulled-right is-rounded">Logout</a>
+    </div>
     <main>
-      <div class="container">
-        <a href="/auth/logout" id="logout-button" class="button is-pulled-right is-rounded">Logout</a>
-      </div>
       {% block content %}{% endblock %}
     </main>
     {% endif %}

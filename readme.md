@@ -4,8 +4,7 @@
 ## Introduction
 This is a full-stack (MELN) app implementing Model-View-Controller design with RESTful routing.\
 \
-[See working site here!](https://nn-penguin-project2.herokuapp.com/)\
-Sign up, then log in with username: "admin", password: "admin" for correct testing (see [known bugs](#Known-bugs))
+**[See working site here!](https://nn-penguin-project2.herokuapp.com/)**
 
 
 ## Technologies Used
@@ -19,16 +18,21 @@ Sign up, then log in with username: "admin", password: "admin" for correct testi
  - ExpressJS Routing
  - Liquid Templating for generating dynamic HTML templates
  - NodeJS as a backend server
- - Bulma CSS framework (mobile-first, flexible, and lightweight!)
+ - Bulma CSS framework (mobile-first, flexible, lightweight)
  - Deployed with Heroku
  - Interfacing with YouTube API v3
 
 
 ## User Stories
- - This workout app allows a user to create workouts based on their personal preference
- - It starts with a Day, which has one of three types of exercises (Pull, Push, or Legs)
- - Then, a user can choose from a list of pre-filled exercises to perform (or edit them), and when choosing, the exercises show a form for entering in their performed weight, number of sets, and number of reps (the numbers for weight/sets/reps are also suggested in the exercise submission form)
-   - A user must be able to easily navigate the tree of Days/Workouts/Exercises from any given location in the app
+ - Overall, the user should be able to create a Pull/Push/Legs workout split based on their personal preference and log that data
+
+ - The user starts adding data with a Day, which has one of three types of exercises (Pull, Push, or Legs)
+
+ - Then, the user should choose from a list of pre-filled exercises to perform (or edit them), and when choosing, the exercises show a form for entering in their performed weight, number of sets, and number of reps (the numbers for new weight/sets/reps are also suggested in the exercise submission form)
+
+ - A user must be able to easily navigate the tree of Days/Workouts/Exercises from any given location in the app
+
+
 #### Special Features
  - Users can change individual exercises and check their form beforehand via the quick YouTube video link beside the exercise
 
@@ -36,7 +40,7 @@ Sign up, then log in with username: "admin", password: "admin" for correct testi
 ## Models
  - Day:
     - day number ("Day 1", "Day 2", ad infinitum)
-    - workout type ("Workout A", "Workout B", or "Workout C")
+    - workout type ("Pull", "Push", or "Legs")
     - exercises (an array of exercises ObjectIDs from the Exercise Schema below)
     - username (for making days depend on the user logged in)
 
@@ -115,19 +119,19 @@ App
 
 
 ## Known Bugs
- - When user changes a specific exercise and submits changes, it doesn't always update immediately upon redirect, but refreshing the page confirms that the change was actually made
-
- - When a day's workout type is set to "Rest" and submitted as such, if the user changes to any other workout type, it won't populate the exercise data
-
- - Exercise table is overflowing on iPhone 5 screen
+ - When user changes a specific exercise and submits changes, it doesn't *always* update immediately upon redirect, but refreshing the page confirms that the change was actually made
 
  - YouTube API v3 implementation ("google.discovery.Discovery.GetDiscoveryRest") becomes easily flooded with requests during testing, exceeding the daily request quota limit
- 
- - Change YouTube query to include only responses for "sports" category instead of general categories
 
  - Logout button is only clickable in bottom half of button
+
+ - ~~Exercise table is overflowing the container on iPhone 5 screen, looks ugly~~
+
+ - ~~When a day's workout type is set to "Rest" and submitted as such, if the user changes to any other workout type, it won't populate the exercise data~~
  
- - Users other than "admin" don't have the correct "New Day" suggestion (another bug as a result of a bug fix ...ugh)
+ - ~~Change YouTube query to include only responses for "sports" category instead of general categories~~
+ 
+ - ~~Users other than "admin" don't have the correct "New Day" suggestion~~
 
 
 ## Extra Features for the Future:

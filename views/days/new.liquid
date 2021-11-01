@@ -12,16 +12,18 @@
     <fieldset>
       <legend class="title is-3">Keep up your progress</legend>
       <input class="button is-warning is-rounded mb-3" type="reset" value="Reset">
+      <input class="button is-primary is-rounded mb-3 ml-5" type="submit" value="Let's begin">
+
       <div class="columns is-centered is-mobile">
         <div class="column is-one-fifth">
           <label class="label">
             Day #
           </label>
           <input class="input has-text-centered" type="text" name="name" value="{{ newDay }}" autofocus />
-          </div>
         </div>
-      <div class="field">
+      </div>
 
+      <!-- <div class="field"> -->
         <div class="control">
           <div class="select">
             <label class="label">
@@ -29,8 +31,9 @@
             </label>
             <select name="workoutType">
               
-              <option
               {% assign mod = newDay | modulo: 5 %}
+              
+              <option
               {% if mod == 0 or mod == 2 %}
                 selected value="Rest"
               {% endif %}
@@ -61,13 +64,10 @@
             </select>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
       <br><br>
-      <div class="field">
-        <div class="control">
-          <input class="button is-primary is-rounded" type="submit" value="Let's begin">
-        </div>
-      </div>
+
+
     </fieldset>
   </form>
 </div>

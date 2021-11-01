@@ -70,33 +70,35 @@
             <a href="/days/{{ day._id }}/edit_exercises" class="button is-warning is-rounded">Edit Exercises</a>
           </div>
         </div>
-        <table class="table is-striped is-narrow is-hoverable container">
-          <thead>
-            <tr>
-              <th>Video</th>
-              <th>Exercise</th>
-              <th>Weight</th>
-              <th>Sets</th>
-              <th>Reps</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for theExercise in day.exercises %}
-            
-            <tr class="m-0">
-              <td>
-                <button id="{{ theExercise.name | remove:" " }}" class="button-howto button is-info is-light">
-                  <i class="fas fa-video"></i>
-                </button>
-              </td>
-              <td>{{ theExercise.name }}</td>
-              <td>{{ theExercise.weight }} lbs</td>
-              <td>{{ theExercise.sets }}</td>
-              <td>{{ theExercise.reps }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="table-container">
+
+          <table class="table is-striped is-narrow is-hoverable container">
+            <thead>
+              <tr>
+                <th>Video</th>
+                <th>Exercise</th>
+                <th>Weight</th>
+                <th>Sets</th>
+                <th>Reps</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for theExercise in day.exercises %}
+                <tr class="m-0">
+                  <td>
+                    <button id="{{ theExercise.name | remove:" " }}" class="button-howto button is-info is-light">
+                      <i class="fas fa-video"></i>
+                    </button>
+                  </td>
+                  <td>{{ theExercise.name }}</td>
+                  <td>{{ theExercise.weight }} lbs</td>
+                  <td>{{ theExercise.sets }}</td>
+                  <td>{{ theExercise.reps }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       {% endif %}
   </article>
 </div>

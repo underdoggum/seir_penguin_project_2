@@ -5,7 +5,6 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
-// const path = require("path");
 const DayRouter = require("./controllers/day");
 const UserRouter = require("./controllers/user");
 const session = require("express-session");
@@ -31,9 +30,8 @@ app.use(session({
   saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: process.env.DATABASE_URL
-  })
-  // turn on below when deploying via Heroku
-  // cookie: { secure: true }
+  }),
+  cookie: { secure: true }
 }));
 
 
@@ -46,10 +44,6 @@ app.use("/auth", UserRouter);
 // home page, checking basic connection
 app.get("/", (req, res) => {
   res.render("index.liquid", { main: true });
-  // res.send(`Welcome to gymrift! We're glad you're here, and you will be too.
-  // Our goal is to maximize your bodybuilding efforts through the time-tested 3 day pull/push/legs workout split favorited by bodybuilding giants such as Arnold Schwartznegger.
-  // The first 5 days are pre-filled with suggested exercises, but feel free to change these up.
-  // When starting a new day of exercises, the next suggested workout is applied, but also feel free to adjust to your liking.`);
 });
 
 app.get("/error", (req, res) => {

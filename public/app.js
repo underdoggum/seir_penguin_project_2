@@ -23,6 +23,7 @@ function execute(id) {
     "type": [
       "video"
     ],
+    "videoCategoryId": "17",
     "videoDuration": "short"
   })
     .then(function(response) {

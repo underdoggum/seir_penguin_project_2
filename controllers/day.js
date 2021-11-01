@@ -33,7 +33,7 @@ router.use(auth);
 router.get("/", async (req, res) => {
   Day.find({ username: req.session.username })
     .populate("exercises")
-    .sort({ name: -1 })    // used to sort by decreasing days
+    .sort({ name: -1 })    // used to sort by decreasing days, change to "1" if sorting by ascending days
     .then(days => {
       res.render("days/index.liquid", { days });
     })
@@ -46,14 +46,9 @@ router.get("/", async (req, res) => {
 router.get("/new", (req, res) => {
   let newDay = 0;         // for suggesting new days and workoutTypes
   console.log(req.session.username)
-  Day.find({})
+  Day.find({ username: req.session.username })
     .then(days => {
       newDay = days.length + 1;
-
-      // need below for non-seeded session
-      if (req.session.username !== "admin") {
-        newDay = 6;
-      }
       res.render("days/new.liquid", { newDay });
     })
     .catch(error => {
