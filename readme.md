@@ -5,7 +5,7 @@
 This is a full-stack (MELN) app implementing Model-View-Controller design with RESTful routing.\
 \
 [See working site here!](https://nn-penguin-project2.herokuapp.com/)\
-Log in as username: "admin", password: "admin" for correct testing
+Sign up, then log in with username: "admin", password: "admin" for correct testing (see [known bugs](#Known-bugs))
 
 
 ## Technologies Used
