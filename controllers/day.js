@@ -64,8 +64,7 @@ router.get("/new", (req, res) => {
 // create route (days/new)
 router.post("/", (req, res) => {
   req.body.username = req.session.username;
-
-
+  
   Day.create(req.body)
     .then(day => {
       // create an array of exercises based on the day's workout type that's selected

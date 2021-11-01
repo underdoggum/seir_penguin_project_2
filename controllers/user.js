@@ -62,9 +62,9 @@ router.post("/signup", async (req, res) => {
   req.body.password = await bcrypt.hash(req.body.password, 10);
   User.create(req.body)
     .then(user => {
-      // console.log(starterExercises)
-      console.log(starterDays)
-      generateExercises(req.body.username);
+      if (user.username !== "admin") {
+        generateExercises(req.body.username);
+      }
       res.redirect("/auth/login");
     })
     .catch(error => {
