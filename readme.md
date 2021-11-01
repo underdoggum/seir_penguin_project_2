@@ -4,7 +4,8 @@
 ## Introduction
 This is a full-stack (MELN) app implementing Model-View-Controller design with RESTful routing.\
 \
-[See working site here!](https://nn-penguin-project2.herokuapp.com/)
+[See working site here!](https://nn-penguin-project2.herokuapp.com/)\
+Log in as username: "admin", password: "admin" for correct testing
 
 
 ## Technologies Used
@@ -117,6 +118,8 @@ App
 
  - YouTube API v3 implementation ("google.discovery.Discovery.GetDiscoveryRest") becomes easily flooded with requests during testing, exceeding the daily request quota limit
  
+ - Users other than "admin" don't have the correct "New Day" suggestion (another bug as a result of a bug fix ...ugh)
+
 
 ## Extra Features for the Future:
  - When creating a new Day, automatically suggest weight increase of 5% (rounded to nearest 5 lb increment) of the previous weight
