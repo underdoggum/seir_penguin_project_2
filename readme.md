@@ -77,7 +77,8 @@ App
 ```
 
 
-## RESTful Route Table
+## Route Tables
+#### RESTful Routes
 | Action         | Path                        | HTTP Verb | Liquid view filename  | Purpose                                                                        |
 |:--------------:|:---------------------------:|:---------:|:---------------------:|:------------------------------------------------------------------------------:|
 | Index          | /days                       | GET       | days/index.liquid     | List all Days                                                                  |
@@ -88,8 +89,12 @@ App
 | Edit Days      | /days/:dayId/edit           | GET       | days/edit.liquid      | Show a form to complete for editing a Day                                      |
 | Update         | /days/:dayId                | PUT       |                       | Update the edited Day OR the edited exercises from the respective "Edit route" |
 | Destroy        | /days/:dayId                | DELETE    |                       | Delete a specific Day                                                          |
-| New            | /signup                     | GET       | auth/signup.liquid    | Show a form for a user to sign up                                              |
-| Create         | /signup                     | POST      |                       | Create a new user, then redirect to login page                                 |
+
+#### Other Routes
+| Action         | Path                        | HTTP Verb | Liquid view filename  | Purpose                                                                        |
+|:--------------:|:---------------------------:|:---------:|:---------------------:|:------------------------------------------------------------------------------:|
+| Auth           | /signup                     | GET       | auth/signup.liquid    | Show a form for a user to sign up                                              |
+| Auth           | /signup                     | POST      |                       | Create a new user, then redirect to login page                                 |
 | Auth           | /login                      | GET       | auth/signup.liquid    | Show a form for a user to log in                                               |
 | Auth           | /login                      | POST      |                       | Confirm the login credentials, then redirect to main page                      |
 
