@@ -1,5 +1,6 @@
 {% layout "layout.liquid" %}
 {% block auth %}
+
 <div class="container mb-5">
   <!-- <a href="/" class="button is-rounded is-link is-light block m-2">Home</a> -->
   <div class="buttons has-addons is-centered m-5">
@@ -7,7 +8,6 @@
     <a href="/auth/signup" id="signup-button" class="button is-link is-light block is-medium has-text-weight-bold">Sign Up</a>
   </div>
 </div>
-
 <div class="container has-text-centered">
   <h3 class="title is-3">Log In</h3>
   <form action="/auth/login" method="post">
@@ -15,7 +15,7 @@
 
       <div class="column is-one-fifth block">
         <label for="username" class="label">Username</label>
-        <input class="input" type="text" name="username" placeholder="Username" required>
+        <input class="input" type="text" name="username" placeholder="Username" autofocus required>
       </div>
       <div class="column is-one-fifth block">
         <label for="password" class="label">Password</label>

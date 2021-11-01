@@ -52,7 +52,7 @@ router.get("/new", (req, res) => {
 
       // need below for non-seeded session
       if (req.session.username !== "admin") {
-        newDay = 1;
+        newDay = 6;
       }
       res.render("days/new.liquid", { newDay });
     })
@@ -64,7 +64,7 @@ router.get("/new", (req, res) => {
 // create route (days/new)
 router.post("/", (req, res) => {
   req.body.username = req.session.username;
-  
+
   Day.create(req.body)
     .then(day => {
       // create an array of exercises based on the day's workout type that's selected
