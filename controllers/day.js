@@ -4,12 +4,14 @@
 /////////////////////////////////////////
 // Setup
 /////////////////////////////////////////
-// const { json } = require("express");
+require("dotenv").config();
 const express = require("express");
 const Day = require("../models/day");
 const Exercise = require("../models/exercise");
 const starterExercises = require("../models/starterExercises");
 const { auth } = require("./middleware");
+
+const APIKEY = process.env.APIKEY;
 
 
 /////////////////////////////////////////
@@ -47,7 +49,7 @@ router.get("/new", (req, res) => {
   Day.find({})
     .then(days => {
       newDay = days.length + 1;
-      
+
       // need below for non-seeded session
       if (req.session.username !== "admin") {
         newDay = 1;
@@ -192,7 +194,7 @@ router.get("/:dayId", (req, res) => {
   Day.findById(dayId)
     .populate("exercises")
     .then(day => {
-      res.render("days/show.liquid", { day });
+      res.render("days/show.liquid", { day, APIKEY });
     })
     .catch(error => {
       console.log(error);

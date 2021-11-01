@@ -2,10 +2,13 @@
 // Interfacing with Youtube API v3
 // Most of the code in the section below written with the help of the YouTube API docs for searching video lists
 // https://developers.google.com/youtube/v3/docs/search/list
+
+
 //////////////////////////////////////////
 function loadClient() {
   // uncomment below when it's showtime
-  // gapi.client.setApiKey("AIzaSyBud0lQ6wFeyZ9dlZfpHd2IZljwk7VXM90");
+  console.log($("iframe").attr("class"))
+  gapi.client.setApiKey($("iframe").attr("class"));
   return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
       .then(function() { console.log("GAPI client loaded for API"); },
             function(err) { console.error("Error loading GAPI client for API", err); });
@@ -23,21 +26,19 @@ function execute(id) {
     ],
     "videoDuration": "short"
   })
-      .then(function(response) {
-        // Handle the results here (response.result has the parsed body)
-        const link = response.result.items[0].id.videoId;
-        // use code below if just redirecting
-        // window.location.href = "https://www.youtube.com/watch?v=" + response.result.items[0].id.videoId;
-        const url = "https://www.youtube.com/embed/" + link;
+    .then(function(response) {
+      const link = response.result.items[0].id.videoId;
+      // use code "window.location.href = ..." if just redirecting
+      const url = "https://www.youtube.com/embed/" + link;
 
+      $("#youtube-modal").attr("src", url);
+      $("#modal").show();
+      $("#close").on("click", () => {
         $("#youtube-modal").attr("src", url);
-        $("#modal").show();
-        $("#close").on("click", () => {
-          $("#youtube-modal").attr("src", url);
-          $("#modal").css("display", "none");
-        });
-      },
-      function(err) { console.error("Execute error", err); });
+        $("#modal").css("display", "none");
+      });
+    },
+    function(err) { console.error("Execute error", err); });
 }
 gapi.load("client");
 
@@ -56,14 +57,3 @@ $(".button-howto").on("click", function() {
   execute("how to perform " + this.id);
 
 });
-
-//////////////////////////////////////////
-// Signup and Login button handling
-//////////////////////////////////////////
-// $("#signup-button").on("click", function() {
-//   $(this).hide();
-// });
-
-// $("#login-button").on("click", function() {
-//   $(this).hide();
-// });
