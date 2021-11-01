@@ -20,13 +20,7 @@
 
   {% if main == true %}
     {% comment %} if user is NOT logged in, display links to log in {% endcomment %}
-    <div class="container mb-5">
-      <!-- <a href="/" class="button is-rounded is-link is-light block m-2">Home</a> -->
-      <div class="buttons has-addons is-centered m-5">
-        <a href="/auth/login" id="login-button" class="button is-link is-light block is-medium has-text-weight-bold">Login</a>
-        <a href="/auth/signup" id="signup-button" class="button is-link block is-medium has-text-weight-bold">Sign Up</a>
-      </div>
-    </div>
+    
     <main>
       {% block auth %}{% endblock %}
     </main>

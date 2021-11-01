@@ -13,6 +13,26 @@ footer {
 }
 
 
+.button:not(#login-button):not(#signup-button):not(#logout-button):hover {
+  animation: enlarge 2s;
+}
+
+@keyframes enlarge {
+  0% {
+    box-shadow: rgba(0, 0, 0, 0.2);
+  }
+
+  50% {
+    box-shadow: 2px 0 2px 1px rgba(0, 0, 0, 0.2), -2px 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: rgba(0, 0, 0, 0.2);
+
+  }
+}
+
+
 .delete-notification {
   position: fixed;
   z-index: 2;

@@ -1,5 +1,12 @@
 {% layout "layout.liquid" %}
 {% block auth %}
+<div class="container mb-5">
+  <!-- <a href="/" class="button is-rounded is-link is-light block m-2">Home</a> -->
+  <div class="buttons has-addons is-centered m-5">
+    <a href="/auth/login" id="login-button" class="button is-link block is-medium has-text-weight-bold">Login</a>
+    <a href="/auth/signup" id="signup-button" class="button is-link is-light block is-medium has-text-weight-bold">Sign Up</a>
+  </div>
+</div>
 
 <div class="container has-text-centered">
   <h3 class="title is-3">Log In</h3>
@@ -16,7 +23,7 @@
       </div>
     </div>
     <div class="block">
-      <input class="button is-rounded is-primary" type="submit" value="Log In">
+      <input class="button is-rounded is-primary is-medium" type="submit" value="Log In">
     </div>
   </form>
 </div>

@@ -14,15 +14,19 @@
       <input class="button is-warning is-rounded mb-3" type="reset" value="Reset">
       <div class="columns is-centered is-mobile">
         <div class="column is-one-fifth">
-          <label>
-            Day # <input class="input has-text-centered" type="text" name="name" value="{{ newDay }}" />
+          <label class="label">
+            Day #
           </label>
+          <input class="input has-text-centered" type="text" name="name" value="{{ newDay }}" />
           </div>
         </div>
       
       <div class="control">
         <div class="select is-multiple">
-          <select multiple size="4" class="mb-4" name="workoutType">
+          <label class="label">
+            Workout Type
+          </label>
+          <select class="mb-4" name="workoutType">
             
             <option class="p-4"
             {% assign mod = newDay | modulo: 5 %}
