@@ -20,10 +20,12 @@
 
   {% if main == true %}
     {% comment %} if user is NOT logged in, display links to log in {% endcomment %}
-    <div class="container has-text-centered">
-      <a href="/" class="button block m-2">Home</a>
-      <a href="/auth/login" id="login-button" class="button block m-2">Login</a>
-      <a href="/auth/signup" id="signup-button" class="button block m-2">Sign Up</a>
+    <div class="container mb-5">
+      <!-- <a href="/" class="button is-rounded is-link is-light block m-2">Home</a> -->
+      <div class="buttons has-addons is-centered m-5">
+        <a href="/auth/login" id="login-button" class="button is-link is-light block is-medium has-text-weight-bold">Login</a>
+        <a href="/auth/signup" id="signup-button" class="button is-link block is-medium has-text-weight-bold">Sign Up</a>
+      </div>
     </div>
     <main>
       {% block auth %}{% endblock %}
@@ -40,7 +42,7 @@
     {% endif %}
     
     
-  <footer class="container mt-4 has-text-centered">
+  <footer class="container mt-5 has-text-centered">
     Site by Nathan Noack &nbsp;&nbsp;|&nbsp;&nbsp; Atlanta, GA 2021 &nbsp;&nbsp;|&nbsp;&nbsp; All rights reserved
   </footer>
 
