@@ -118,6 +118,10 @@ App
 
  - YouTube API v3 implementation ("google.discovery.Discovery.GetDiscoveryRest") becomes easily flooded with requests during testing, exceeding the daily request quota limit
  
+ - Change YouTube query to include only responses for "sports" category instead of general categories
+
+ - Logout button is only clickable in bottom half of button
+ 
  - Users other than "admin" don't have the correct "New Day" suggestion (another bug as a result of a bug fix ...ugh)
 
 
