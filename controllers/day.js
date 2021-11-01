@@ -54,7 +54,6 @@ router.get("/new", (req, res) => {
       if (req.session.username !== "admin") {
         newDay = 1;
       }
-
       res.render("days/new.liquid", { newDay });
     })
     .catch(error => {

@@ -8,21 +8,20 @@ const starterExercises = require("./starterExercises");
 const User = require("./user");
 
 
+const starterDays = [
+  { name: 1, workoutType: "Pull", username: "admin" },
+  { name: 2, workoutType: "Rest", username: "admin" },
+  { name: 3, workoutType: "Push", username: "admin" },
+  { name: 4, workoutType: "Legs", username: "admin" },
+  { name: 5, workoutType: "Rest", username: "admin" },
+];
+
 /////////////////////////////////////////
 // Seed
 /////////////////////////////////////////
 const db = mongoose.connection;
 
 db.on("open", () => {
-  // Day seed
-  const starterDays = [
-    { name: 1, workoutType: "Pull", username: "admin" },
-    { name: 2, workoutType: "Rest", username: "admin" },
-    { name: 3, workoutType: "Push", username: "admin" },
-    { name: 4, workoutType: "Legs", username: "admin" },
-    { name: 5, workoutType: "Rest", username: "admin" },
-  ];
-
   // erase all days and all exercises to re-seed
   Day.deleteMany({})
     .then(data => {
@@ -60,3 +59,6 @@ db.on("open", () => {
       });
       // if I put db.close() in here, it's will return an error!
 });
+
+
+module.exports = { starterDays, starterExercises };

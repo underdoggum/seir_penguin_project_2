@@ -8,11 +8,46 @@ const express = require("express");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+const mongoose = require("../models/connection");
+const Day = require("../models/day");
+const Exercise = require("../models/exercise");
+const { starterDays, starterExercises } = require("../models/seed");
+
 
 /////////////////////////////////////////
 // Create router
 /////////////////////////////////////////
 const router = express.Router();
+
+
+/////////////////////////////////////////
+// Generating starter exercises for a new user
+/////////////////////////////////////////
+const generateExercises = username => {
+  Day.create(starterDays)
+    .then(days => {
+      days.forEach(day => {
+        day.username = username;
+        const exercises = starterExercises[day.workoutType].map(e => {
+          return { ...e, day: day._id };
+        });
+        Exercise.create(exercises)
+          .then(theExercises => {
+            theExercises.forEach(e => {
+              day.exercises.push(e);
+            });
+            day.save()
+              .then(e => {
+                // console.log(day);
+              });
+          });
+      });
+    })
+    .catch(error => {
+      console.log(error);
+      db.close();
+    });
+}
 
 
 /////////////////////////////////////////
@@ -27,11 +62,14 @@ router.post("/signup", async (req, res) => {
   req.body.password = await bcrypt.hash(req.body.password, 10);
   User.create(req.body)
     .then(user => {
+      // console.log(starterExercises)
+      console.log(starterDays)
+      generateExercises(req.body.username);
       res.redirect("/auth/login");
     })
     .catch(error => {
       console.log(error);
-    })
+    });
 });
 
 
