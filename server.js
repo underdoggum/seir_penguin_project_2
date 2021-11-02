@@ -31,7 +31,7 @@ app.use(session({
   store: MongoStore.create({
     mongoUrl: process.env.DATABASE_URL
   }),
-  cookie: { secure: true }
+  // cookie: { secure: true }
 }));
 
 
