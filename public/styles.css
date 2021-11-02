@@ -13,6 +13,8 @@ footer {
 }
 
 
+/* Styling Bulma components */
+
 .button:not(#login-button):not(#signup-button):not(#logout-button):hover {
   animation: enlarge 2s;
 }
@@ -32,6 +34,15 @@ footer {
   }
 }
 
+.card-hover:hover {
+  transition: 0.25s;
+  transition-timing-function: ease-in-out;
+  transform: scale(1.05);
+  background-color: rgb(240, 248, 255, 0.5);
+}
+
+
+/* Modal modifications */
 
 .delete-notification {
   position: fixed;

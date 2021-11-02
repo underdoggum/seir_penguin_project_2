@@ -12,7 +12,7 @@
     {% for day in days %}
     {% if day.workoutType == "Rest" %}
       <div class="column">
-        <div class="box is-6">
+        <div class="box is-6 card-hover">
           <a class="button title is-5 m-2 is-warning is-light is-outlined is-rounded" href="/days/{{ day._id }}">
             Day {{ day.name }} - {{ day.workoutType }}
           </a>
@@ -27,7 +27,7 @@
       </div>
     {% else %}
       <div class="column">
-        <div class="box is-6">
+        <div class="box is-6 card-hover">
           <a class="button title is-5 m-2 is-link is-light is-outlined is-rounded" href="/days/{{ day._id }}">
             Day {{ day.name }} - {{ day.workoutType }}
           </a>
